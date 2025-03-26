@@ -283,7 +283,7 @@ const CaseView = () => {
     return (
         <>
             <div ref={componentRef} className="relative  hidden lg:flex flex-row justify-between mt-20 mb-8">
-                {/* <Cursor isGelly={true} cursorSize={1} cursorBackgrounColor='#ffffff00' cursorInnerColor='black' colorAnimationDuration={1.5} /> */}
+                <Cursor isGelly={true} cursorSize={1} cursorBackgrounColor='#ffffff00' cursorInnerColor='black' colorAnimationDuration={1.5} />
                 <div className='flex flex-row'>
                     {/* Полоса */}
                     <div ref={scrollRef}>
