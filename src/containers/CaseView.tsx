@@ -10,17 +10,17 @@ import Link from 'next/link';
 import { Cursor } from 'react-creative-cursor';
 import 'react-creative-cursor/dist/styles.css';
 import useProjectStore from '@/hook/useProjectStore';
-    // {
-    //     id: 0,
-    //     date: '01.10.2024',
-    //     title: 'Cryptosensei',
-    //     description: 'Website design UX/UI',
-    //     img: '/img/interface/bg-footer-case1.png',
-    //     imgMobile: '/img/interface/bg-footer-case1.mobile.png',
-    //     glare: '/img/interface/bg-footer-bag.png',
-    //     link: '/cases',
-    //     tags: [{ name: 'UX/UI Disign' }, { name: 'Marketing' }, { name: 'Branding' }, { name: 'Illustations' }]
-    // },
+// {
+//     id: 0,
+//     date: '01.10.2024',
+//     title: 'Cryptosensei',
+//     description: 'Website design UX/UI',
+//     img: '/img/interface/bg-footer-case1.png',
+//     imgMobile: '/img/interface/bg-footer-case1.mobile.png',
+//     glare: '/img/interface/bg-footer-bag.png',
+//     link: '/cases',
+//     tags: [{ name: 'UX/UI Disign' }, { name: 'Marketing' }, { name: 'Branding' }, { name: 'Illustations' }]
+// },
 
 
 const projects = [
@@ -188,49 +188,49 @@ const CaseView = () => {
         }
     }
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsComponentInView(true);
-                    document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
-                } else {
-                    setIsComponentInView(false);
-                    document.body.style.overflow = 'auto'; // Разблокируем скролл страницы
-                }
-            },
-            {
-                threshold: 1, // Компонент считается в центре, если 50% его видно
-            }
-        );
+    // useEffect(() => {
+    //     const observer = new IntersectionObserver(
+    //         ([entry]) => {
+    //             if (entry.isIntersecting) {
+    //                 setIsComponentInView(true);
+    //                 document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+    //             } else {
+    //                 setIsComponentInView(false);
+    //                 document.body.style.overflow = 'auto'; // Разблокируем скролл страницы
+    //             }
+    //         },
+    //         {
+    //             threshold: 1, // Компонент считается в центре, если 50% его видно
+    //         }
+    //     );
 
-        if (componentRef.current) {
-            observer.observe(componentRef.current);
-        }
+    //     if (componentRef.current) {
+    //         observer.observe(componentRef.current);
+    //     }
 
-        return () => {
-            if (componentRef.current) {
-                observer.unobserve(componentRef.current);
-            }
-        };
-    }, []);
+    //     return () => {
+    //         if (componentRef.current) {
+    //             observer.unobserve(componentRef.current);
+    //         }
+    //     };
+    // }, []);
 
     const handleSlideChange = (swiper: any) => {
         const currentIndex = swiper.activeIndex;
 
-        if (isComponentInView) {
-            console.log(isComponentInView)
-            console.log(currentIndex)
-            console.log(currentSlide)
-            if (currentIndex > currentSlide && currentIndex == projects.length-1) {
-                document.body.style.overflow = 'auto';
-                console.log('yes')
-            } else if (currentIndex < currentSlide && currentIndex == 0) {
-                document.body.style.overflow = 'auto';
-                console.log('no')
-            }
-        }
-        setCurrentSlide(currentIndex)
+        // if (isComponentInView) {
+        //     console.log(isComponentInView)
+        //     console.log(currentIndex)
+        //     console.log(currentSlide)
+        //     if (currentIndex > currentSlide && currentIndex == projects.length - 1) {
+        //         document.body.style.overflow = 'auto';
+        //         console.log('yes')
+        //     } else if (currentIndex < currentSlide && currentIndex == 0) {
+        //         document.body.style.overflow = 'auto';
+        //         console.log('no')
+        //     }
+        // }
+        // setCurrentSlide(currentIndex)
 
         // console.log(currentIndex)
         if (textRef && textRef.current && text0Ref && text0Ref.current && text1Ref && text1Ref.current && text2Ref && text2Ref.current) {
@@ -283,13 +283,13 @@ const CaseView = () => {
     return (
         <>
             <div ref={componentRef} className="relative  hidden lg:flex flex-row justify-between mt-20 mb-8">
-                <Cursor isGelly={true} cursorSize={1} cursorBackgrounColor='#ffffff00' cursorInnerColor='black' colorAnimationDuration={1.5} />
+                {/* <Cursor isGelly={true} cursorSize={1} cursorBackgrounColor='#ffffff00' cursorInnerColor='black' colorAnimationDuration={1.5} /> */}
                 <div className='flex flex-row'>
                     {/* Полоса */}
                     <div ref={scrollRef}>
                         <svg width="2" height="485" viewBox="0 0 2 485" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.8" d="M1 0L1.00002 485" stroke="white" strokeDasharray="5 5" />
-                        </svg> 
+                        </svg>
                     </div>
                     {/* Страницы */}
                     <div className='flex flex-col h-full justify-between'>
@@ -358,6 +358,9 @@ const CaseView = () => {
                         mousewheel={{
                             releaseOnEdges: true,
                             thresholdDelta: 4,
+                            forceToAxis: true,
+                            eventsTarget: 'container',
+                            invert: false,
                         }}
                         modules={[Mousewheel, EffectCreative]}
                         onSlideChange={handleSlideChange}
@@ -453,7 +456,7 @@ const CaseView = () => {
                             >
                                 {projects.map((project, index) => {
                                     return <SwiperSlide key={index} className="w-full">
-                                        <div className="relative w-full h-full bg-no-repeat bg-contain bg-right" style={{backgroundImage : 'url('+ project.imgMobile +')'}}>
+                                        <div className="relative w-full h-full bg-no-repeat bg-contain bg-right" style={{ backgroundImage: 'url(' + project.imgMobile + ')' }}>
                                             {/* <Image quality={100} src={project.imgMobile} fill className="object-contain" alt="project" /> */}
                                         </div>
                                     </SwiperSlide>
