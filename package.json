@@ -17,10 +17,12 @@
     "@react-three/fiber": "^7.0.27",
     "@types/three": "^0.139.0",
     "gsap": "^3.12.5",
+    "keen-slider": "^6.8.6",
     "next": "14.2.4",
     "react": "^18",
     "react-creative-cursor": "^1.2.7",
     "react-dom": "^18",
+    "react-owl-carousel": "^2.3.3",
     "swiper": "^11.1.10",
     "three": "^0.139.2",
     "zustand": "^4.5.5"

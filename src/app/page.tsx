@@ -19,7 +19,7 @@ export default function Home() {
             <source src={'/img/interface/bg-main-video.webm'} type="video/webm" />
             <source src={'/img/interface/bg-main-video.mp4'} type="video/mp4" />
           </video>
-          <video poster="/img/interface/bg-main.mobile.webp" autoPlay playsInline muted preload='none' loop height={"803"} className="block md:hidden max-h-full md:max-h-[803px] overflow-x-hidden w-full max-w-full" style={{objectFit: 'cover'}}>
+          <video poster="/img/interface/bg-main.mobile.webp" autoPlay playsInline muted preload='none' loop height={"803"} className="block md:hidden max-h-full md:max-h-[803px] overflow-x-hidden w-full max-w-full" style={{ objectFit: 'cover' }}>
             <source src={'/img/interface/bg-main-video.mobile.webm'} type="video/webm" />
             <source src={'/img/interface/bg-main-video.mobile.mp4'} type="video/mp4" />
           </video>
