@@ -152,7 +152,7 @@ const CaseView = () => {
             if (textRef.current) {
                 textRef.current.style.opacity = '1';
                 textRef.current.style.transform = `translateY(-${current}px)`;
-                textRef.current.style.transition = 'opacity 0.3s ease-in-out, transform 0.6s ease-in-out';
+                // textRef.current.style.transition = 'opacity 0.3s ease-in-out, transform 0.6s ease-in-out';
             }
         }
 
@@ -218,7 +218,7 @@ const CaseView = () => {
             if (textRefMob.current) {
                 textRefMob.current.style.opacity = '1';
                 textRefMob.current.style.transform = `translateY(-${current}px)`;
-                textRefMob.current.style.transition = 'opacity 0.3s ease-in-out, transform 0.7s ease-out';
+                // textRefMob.current.style.transition = 'opacity 0.3s ease-in-out, transform 0.7s ease-out';
             }
         }
         useProjectStore.setState({ currentProject: projects[currentIndex] });
@@ -268,12 +268,16 @@ const CaseView = () => {
                     </svg>
                 </div>
                 <div className='inline-flex flex-col absolute w-[495px] h-[280px] overflow-hidden z-10'>
-                    <div ref={textRef} className='transition-all'>
+                    <div
+                        ref={textRef}
+                        className='transition-all'
+                        style={{ transition: 'opacity 0.4s ease-in-out, transform 0.6s ease-in-out', transform: 'translateZ(0)' }}
+                    >
                         {projects.map((item, index) => (
                             <div
                                 key={index}
-                                style={{ opacity: index === currentSlide ? 1 : 0, transition: 'opacity 0.4s ease-in-out' }}
-                                className="gap-3 inline-flex flex-col items-start ml-24 mt-9 z-10"
+                                style={{ opacity: index === currentSlide ? 1 : 0, transition: 'opacity 0.4s ease-in-out', transform: 'translateZ(0)' }}
+                                className="gap-3 inline-flex flex-col items-start ml-24 mt-9 z-10 will-change-[opacity]"
                                 ref={index === 0 ? text0Ref : index === 1 ? text1Ref : index === 2 ? text2Ref : text3Ref}
                             >
                                 <div className="opacity-[0.34] text-white leading-[140%]">{item.description}</div>
