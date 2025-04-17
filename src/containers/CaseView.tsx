@@ -7,6 +7,9 @@ import Link from 'next/link';
 import { Cursor } from 'react-creative-cursor';
 import 'react-creative-cursor/dist/styles.css';
 import useProjectStore from '@/hook/useProjectStore';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Mousewheel, EffectCreative } from 'swiper/modules';
 
 const projects = [
     {
@@ -52,6 +55,7 @@ const CaseView = () => {
     const [positionCursor, setPositionCursor] = useState(-22)
     const [isClient, setIsClient] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
+    const swaperRef = useRef<HTMLAnchorElement>(null)
 
     const textRef = useRef<HTMLDivElement>(null)
     const text0Ref = useRef<HTMLDivElement>(null)
@@ -118,9 +122,10 @@ const CaseView = () => {
         };
     }, [currentSlide, isHovered]);
 
-    const handleSlideChange = (currentIndex: number) => {
+    const handleSlideChange = (swiper: any) => {
+        const currentIndex = swiper.activeIndex;
         if (textRef?.current && text0Ref?.current && text1Ref?.current && text2Ref?.current) {
-            let current = 0;
+            let current = 0
             switch (currentIndex) {
                 case 0:
                     text0Ref.current.style.opacity = '1';
@@ -128,22 +133,22 @@ const CaseView = () => {
                     text2Ref.current.style.opacity = '0';
                     break;
                 case 1:
-                    current = text0Ref.current.offsetHeight + 36;
+                    current = text0Ref.current.offsetHeight;
                     text0Ref.current.style.opacity = '0';
                     text1Ref.current.style.opacity = '1';
                     text2Ref.current.style.opacity = '0';
                     break;
                 case 2:
-                    current += text0Ref.current.offsetHeight + 36;
-                    current += text1Ref.current.offsetHeight + 36;
+                    current += text0Ref.current.offsetHeight;
+                    current += text1Ref.current.offsetHeight;
                     text0Ref.current.style.opacity = '0';
                     text1Ref.current.style.opacity = '0';
                     text2Ref.current.style.opacity = '1';
                     break;
                 case 3:
-                    current += text0Ref.current.offsetHeight + 36;
-                    current += text1Ref.current.offsetHeight + 36;
-                    current += text2Ref.current.offsetHeight + 36;
+                    current += text0Ref.current.offsetHeight;
+                    current += text1Ref.current.offsetHeight
+                    current += text2Ref.current.offsetHeight;
                     text0Ref.current.style.opacity = '0';
                     text1Ref.current.style.opacity = '0';
                     text2Ref.current.style.opacity = '0';
@@ -157,34 +162,35 @@ const CaseView = () => {
         }
 
         // Анимация слайдов
-        if (carouselRef.current) {
-            const slides = carouselRef.current.querySelectorAll('div > div');
-            slides.forEach((slide, index) => {
-                if (index === currentIndex) {
-                    // Текущий слайд - плавно появляется сверху
-                    slide.style.opacity = '1';
-                    slide.style.transform = 'translateY(0)';
-                    slide.style.transition = 'opacity 0.7s ease-out, transform 0.7s ease-out';
-                } else if (index < currentIndex) {
-                    // Прошлый слайд - уходит вверх
-                    slide.style.opacity = '0';
-                    slide.style.transform = 'translateY(-20px)';
-                    slide.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-                } else {
-                    // Следующий слайд - появляется снизу
-                    slide.style.opacity = '0';
-                    slide.style.transform = 'translateY(20px)';
-                    slide.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
-                }
-            });
-        }
+        // if (carouselRef.current) {
+        //     const slides = carouselRef.current.querySelectorAll('div > div');
+        //     slides.forEach((slide, index) => {
+        //         if (index === currentIndex) {
+        //             // Текущий слайд - плавно появляется сверху
+        //             slide.style.opacity = '1';
+        //             slide.style.transform = 'translateY(0)';
+        //             slide.style.transition = 'opacity 0.7s ease-out, transform 0.7s ease-out';
+        //         } else if (index < currentIndex) {
+        //             // Прошлый слайд - уходит вверх
+        //             slide.style.opacity = '0';
+        //             slide.style.transform = 'translateY(-20px)';
+        //             slide.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+        //         } else {
+        //             // Следующий слайд - появляется снизу
+        //             slide.style.opacity = '0';
+        //             slide.style.transform = 'translateY(20px)';
+        //             slide.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+        //         }
+        //     });
+        // }
 
         useProjectStore.setState({ currentProject: projects[currentIndex] });
         setProject(projects[currentIndex]);
         updateCursorPosition(currentIndex);
     };
 
-    const handleSlideChangeMobile = (currentIndex: number) => {
+    const handleSlideChangeMobile = (swiper: any) => {
+        const currentIndex = swiper.activeIndex;
         if (textRefMob?.current && text0RefMob?.current && text1RefMob?.current && text2RefMob?.current) {
             let current = 0;
             switch (currentIndex) {
@@ -277,7 +283,7 @@ const CaseView = () => {
                             <div
                                 key={index}
                                 style={{ opacity: index === currentSlide ? 1 : 0, transition: 'opacity 0.4s ease-in-out', transform: 'translateZ(0)' }}
-                                className="gap-3 inline-flex flex-col items-start ml-24 mt-9 z-10 will-change-[opacity]"
+                                className="gap-3 inline-flex flex-col items-start ml-24 z-10 will-change-[opacity]"
                                 ref={index === 0 ? text0Ref : index === 1 ? text1Ref : index === 2 ? text2Ref : text3Ref}
                             >
                                 <div className="opacity-[0.34] text-white leading-[140%]">{item.description}</div>
@@ -309,64 +315,85 @@ const CaseView = () => {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
-                    <div
-                        ref={carouselRef}
-                        className="w-full max-h-[485px] h-full absolute left-0 overflow-hidden"
-                    >
-                        {projects.map((project, index) => (
-                            <div
-                                key={index}
-                                className={`absolute w-full h-full ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-                                style={{
-                                    transform: index === currentSlide
-                                        ? 'translateY(0)'
-                                        : index < currentSlide
-                                            ? 'translateY(-20px)'
-                                            : 'translateY(20px)',
-                                    transition: 'opacity 0.7s ease-out, transform 0.7s ease-out'
-                                }}
-                            >
-                                <Image
-                                    quality={100}
-                                    src={project.img}
-                                    fill
-                                    className="object-contain"
-                                    alt="project"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </Link>
-            </div>
+                    <Swiper
+                        direction={'vertical'}
+                        effect={'creative'}
+                        scrollbar={{ draggable: true }}
+                        className='w-full max-h-[485px] h-full absolute left-0'
+                        spaceBetween={1}
+                        speed={700}
+                        mousewheel={{
+                            releaseOnEdges: true,
+                            thresholdDelta: 4,
+                            forceToAxis: true,
+                            eventsTarget: 'container',
+                            invert: false,
+                        }}
+                        modules={[Mousewheel, EffectCreative]}
+                        onSlideChange={handleSlideChange}
+                        creativeEffect={{
+                            prev: {
+                                // shadow: true,
+                                translate: [0, '-100%', 100],
+                            },
+                            next: {
+                                translate: [0, '100%', 100],
+                            },
+                        }}>
+                        {projects.map((project, index) => {
+                            return <SwiperSlide key={index} className="w-full" style={{}}>
+                                <div
+                                    className={"relative w-full h-full bac bg-no-repeat bg-contain"}
+                                    style={{ scale: '90%' }}
+                                >
+                                    <Image quality={100} src={project.img} fill className="object-contain" alt="project" />
+                                </div>
+                            </SwiperSlide>
+                        })}
+
+                    </Swiper>
+                </Link >
+            </div >
 
             {/* Мобильная версия */}
-            <div className="w-full h-full flex flex-row relative justify-center">
+            < div className="w-full h-full flex flex-row relative justify-center" >
                 <div className="flex lg:hidden flex-col mt-10 mb-8 ml-10 max-w-[360px]">
                     <div className='flex flex-row w-full relative h-[260px]'>
-                        <Link
-                            href={project.link}
-                            className='w-full h-full mr-8 absolute z-10 relative cursor-pointer pointer-events-auto'
-                        >
-                            <div
-                                ref={mobileCarouselRef}
-                                className="w-full max-h-[260px] h-full absolute left-0 cursor-pointer overflow-hidden"
-                            >
-                                {projects.map((project, index) => (
-                                    <div
-                                        key={index}
-                                        className={`absolute w-full h-full transition-opacity duration-700 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-                                    >
-                                        <div
-                                            className="relative w-full h-full bg-no-repeat bg-contain bg-right"
-                                            style={{ backgroundImage: `url(${project.imgMobile})` }}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
+                        <Link href={project.link} className='w-full h-full mr-8 absolute z-10 relative cursor-pointer pointer-events-auto'>
+                            <Swiper
+                                className='w-full max-h-[260px] h-full absolute left-0 cursor-pointer'
+                                direction={'vertical'}
+                                effect={'creative'}
+                                scrollbar={{ draggable: true }}
+                                spaceBetween={30}
+                                speed={700}
+                                mousewheel={{
+                                    releaseOnEdges: true,
+                                    thresholdDelta: 4,
+                                }}
+                                modules={[Mousewheel, EffectCreative]}
+                                onSlideChange={handleSlideChangeMobile}
+                                creativeEffect={{
+                                    prev: {
+                                        // shadow: true,
+                                        translate: [0, '-100%', 100],
+                                    },
+                                    next: {
+                                        translate: [0, '100%', 100],
+                                    },
+                                }}>
+                                {projects.map((project, index) => {
+                                    return <SwiperSlide key={index} className="w-full">
+                                        <div className="relative w-full h-full bg-no-repeat bg-contain bg-right" style={{ backgroundImage: 'url(' + project.imgMobile + ')' }}>
+                                            {/* <Image quality={100} src={project.imgMobile} fill className="object-contain" alt="project" /> */}
+                                        </div>
+                                    </SwiperSlide>
+                                })}
+                            </Swiper>
                         </Link>
                     </div>
                     <div className='inline-flex flex-col h-[320px] overflow-hidden mt-8 z-10'>
-                        <div ref={textRefMob} className='transition-all'>
+                        <div ref={textRefMob} className='transition-all' style={{ transition: 'opacity 0.4s ease-in-out, transform 0.6s ease-in-out', transform: 'translateZ(0)' }}>
                             {projects.map((item, index) => (
                                 <div
                                     key={index}
@@ -403,7 +430,7 @@ const CaseView = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
