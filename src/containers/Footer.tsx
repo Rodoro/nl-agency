@@ -32,7 +32,7 @@ const Footer = () => {
     return (
         <div className="bg-black rounded-t-[45px] overflow-hidden relative">
             <div className="absolute w-full h-[800px]"><TCanvas index={index} /></div>
-            {/* <div className="absolute m-auto -right-4 flex-shrink-0 w-screen h-[5.75rem] top-[800px] bg-black" style={{ boxShadow: '0px 0px 63.1px 49px #000000' }} /> */}
+            <div className="absolute m-auto -right-4 flex-shrink-0 w-screen h-[5.75rem] top-[800px] bg-black" style={{ boxShadow: '0px 0px 63.1px 49px #000000' }} />
 
             {/* <div style={{ backgroundImage: "url(" + bg + ")"}} className={"transition-all absolute h-[600px] w-full pointer-events-none top-0 right-0 bg-right-top bg-no-repeat bg-contain z-20"} /> */}
             <div className="absolute pointer-events-none h-full w-full max-w-[600px] lg:max-w-[800px] m-auto bg-[url(/img/interface/bg-footer-form2.png)] bottom-32 sm:bottom-0 right-0 bg-right-bottom bg-no-repeat bg-contain" />
@@ -57,7 +57,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="relative flex-col items-center justify-center pt-28 flex">
+            <div className="relative flex-col items-center justify-center pt-28 flex">
                 <div className="absolute h-[300px] md:h-[413px] w-full bg-[url(/img/interface/bg-footer-form1.png)] top-0 left-0 bg-left-top bg-no-repeat bg-contain" />
                 <span id="bot" className={style.textGradient + " pl-52 md:pl-56 opacity-[0.6] text-[39px] md:text-[65px] lg:text-[113px] font-semibold leading-[120%] text-center"}>Get&nbsp;In Touch with&nbsp;Us</span>
                 <div className='flex flex-col md:grid md:grid-cols-5 gap-8 w-full max-w-[1000px] px-8 pt-16 z-[5]'>
@@ -104,19 +104,19 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                TODO: Сделать блять обработку и отправку формы на сервер бл, ААААААААААА
-                <div className={style.bSubmit + " text-white mt-14 mb-9 cursor-pointer relative bg-[#DACDFF]/[.03] w-full max-w-[334px] py-4 pl-16 pr-[88px] flex flex-row items-center justify-center rounded-full linerBorderGradient"}>
+                {/* TODO: Сделать блять обработку и отправку формы на сервер бл, ААААААААААА */}
+                {/* <div className={style.bSubmit + " text-white mt-14 mb-9 cursor-pointer relative bg-[#DACDFF]/[.03] w-full max-w-[334px] py-4 pl-16 pr-[88px] flex flex-row items-center justify-center rounded-full linerBorderGradient"}>
                     {getTranslation('footer.text19')}
                     <div className="absolute top-0 right-0 p-[22px] bg-[#FF4D00] rounded-full" style={{ filter: "drop-shadow(0px 0px 71.791px rgba(255, 77, 0, 0.60)) drop-shadow(0px 0px 92.444px rgba(255, 77, 0, 0.3  0))" }}>
                         <svg width={14} height={14} viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13.7452 0.981492C13.735 0.460177 13.3041 0.0458545 12.7828 0.0560763L4.2875 0.222651C3.76618 0.232872 3.35186 0.663768 3.36208 1.18508C3.3723 1.7064 3.8032 2.12072 4.32451 2.1105L11.8759 1.96243L12.024 9.51382C12.0342 10.0351 12.4651 10.4495 12.9864 10.4392C13.5077 10.429 13.922 9.99812 13.9118 9.4768L13.7452 0.981492ZM1.68054 13.9277L13.4819 1.65437L12.1208 0.345632L0.319458 12.619L1.68054 13.9277Z" fill="white" />
                         </svg>
                     </div>
-                </div>
+                </div> */}
                 <Button href={""} className={style.bSubmit + " z-[5] mt-14 mb-9 w-full max-w-[334px] flex flex-row items-center justify-center"}>
                     {getTranslation('footer.text19')}
                 </Button>
-            </div> */}
+            </div>
             <div className='absolute bg-[url(/img/interface/shum.png)] pointer-events-none top-0 right-0 w-full h-full mix-blend-soft-light z-[2] opacity-35' />
             <div className="w-full flex flex-row justify-center">
                 <div className='px-4 md:px-12 xl:px-20 lg:px-36 py-11 lg:py-32 flex flex-col w-full gap-14 max-w-[1440px]'>
