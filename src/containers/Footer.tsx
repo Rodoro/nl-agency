@@ -96,10 +96,10 @@ const Footer = () => {
                                 }
                             </div>
                         </div>
-                        <div className='h-full flex flex-col gap-3'>
+                        {/* <div className='h-full flex flex-col gap-3'>
                             <div className="text-white text-sm leading-[140%]">{getTranslation('footer.text18')}</div>
                             <InputTextArea placeholder={getTranslation('component.inputArea.placeholder')} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 {/* TODO: Сделать блять обработку и отправку формы на сервер бл, ААААААААААА */}
