@@ -59,7 +59,9 @@ const Footer = () => {
             </div>
             <div className="relative flex-col items-center justify-center pt-28 flex">
                 <div className="absolute h-[300px] md:h-[413px] w-full bg-[url(/img/interface/bg-footer-form1.png)] top-0 left-0 bg-left-top bg-no-repeat bg-contain" />
-                <span id="bot" className={style.textGradient + " pl-52 md:pl-56 opacity-[0.6] text-[39px] md:text-[65px] lg:text-[113px] font-semibold leading-[120%] text-center"}>Get&nbsp;In Touch with&nbsp;Us</span>
+                <span id="bot" className={style.textGradient + " pl-52 md:pl-56 opacity-[0.6] text-[39px] md:text-[65px] lg:text-[113px] font-semibold leading-[120%] text-center"}>
+                    Get&nbsp;In Touch with&nbsp;Us
+                </span>
                 <div className='flex flex-col md:grid md:grid-cols-5 gap-8 w-full max-w-[1000px] px-8 pt-16 z-[5]'>
                     {/* <div className='col-span-2 flex flex-col items-start gap-12'>
                         <div className='flex flex-col gap-3 w-full'>
@@ -82,27 +84,23 @@ const Footer = () => {
                             </div>
                             <RangeSlider value={budjet} setValue={setBudjet} min={1} max={100} />
                         </div>
-                    </div>
+                    </div> */}
                     <div className='col-span-3 flex flex-col gap-7'>
                         <div className='flex flex-col gap-3'>
                             <div className="text-white text-sm leading-[140%]">{getTranslation('footer.text17')}</div>
                             <div className='flex flex-wrap justify-start gap-2'>
-                                <Switch name={'Logo'} />
-                                <Switch name={'Website'} />
-                                <Switch name={'Branding'} />
-                                <Switch name={'3D'} />
-                                <Switch name={'Identily'} />
-                                <Switch name={'Booklet'} />
-                                <Switch name={'Brand Identity'} />
-                                <Switch name={'Product design'} />
-                                <Switch name={'More...'} />
+                                {['Logo', 'Website', 'Branding', '3D', 'Identily', 'Booklet', 'Brand Identity', 'Product design', 'More...']
+                                    .map((name) => (
+                                        <Switch key={name} name={name} />
+                                    ))
+                                }
                             </div>
                         </div>
                         <div className='h-full flex flex-col gap-3'>
                             <div className="text-white text-sm leading-[140%]">{getTranslation('footer.text18')}</div>
                             <InputTextArea placeholder={getTranslation('component.inputArea.placeholder')} />
                         </div>
-                    </div> */}
+                    </div>
                 </div>
                 {/* TODO: Сделать блять обработку и отправку формы на сервер бл, ААААААААААА */}
                 {/* <div className={style.bSubmit + " text-white mt-14 mb-9 cursor-pointer relative bg-[#DACDFF]/[.03] w-full max-w-[334px] py-4 pl-16 pr-[88px] flex flex-row items-center justify-center rounded-full linerBorderGradient"}>
